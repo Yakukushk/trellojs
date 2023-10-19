@@ -9,13 +9,8 @@
   @vite('resources/js/app.js')
 </head>
 <body>
-<header>
-    <section>
-
-    </section>
-</header>
 <div id="app">
-    <main-component><main-component/>
+    <main-component />
 </div>
 </body>
 </html>

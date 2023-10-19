@@ -1,5 +1,7 @@
 <template>
-
+<header>
+    <header-component/>
+</header>
     <div class="container">
         <h1>Desk</h1>
         <button @click.prevent="clickedButton = !clickedButton" type="button" class="btn">
@@ -55,10 +57,11 @@ import {ref, onMounted} from "vue";
 import Swal from "sweetalert2";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {useRouter} from "vue-router";
+import HeaderComponent from "./SIteComponent/HeaderComponent.vue";
 
 export default {
     name: "DeskComponent",
-    components: {FontAwesomeIcon},
+    components: {HeaderComponent, FontAwesomeIcon},
     setup() {
         const desks = ref([]);
         const errorValidate = ref(false);

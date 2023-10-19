@@ -23,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'desk' => \App\Http\Controllers\api\DeskController::class,
     'desk-lists' => \App\Http\Controllers\api\DeskListController::class,
-    'card' => \App\Http\Controllers\api\CardController::class
+    'card' => \App\Http\Controllers\api\CardController::class,
+    'task' => \App\Http\Controllers\api\TaskController::class
 ]);

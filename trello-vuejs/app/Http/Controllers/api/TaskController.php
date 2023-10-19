@@ -4,19 +4,20 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CardResource;
-use App\Http\Resources\DeskListResource;
 use App\Http\Resources\DeskResource;
+use App\Http\Resources\TaskResource;
 use App\Models\Card;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
-class CardController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -26,41 +27,34 @@ class CardController extends Controller
     {
         $data = request()->validate([
             'name' => 'required|string',
-            'desk_list_id' => 'required|integer|exists:desk_lists,id'
+            'card_id' => 'required|integer|exists:cards,id'
         ]);
-       $card = Card::create($data);
-       return new CardResource($card);
+        $task = Task::create($data);
+        return new TaskResource($task);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Card $card)
+    public function show(string $id)
     {
-          return new CardResource($card);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Card $card)
+    public function update(Request $request, string $id)
     {
-        $data = request()->validate([
-            'name' => 'required|string',
-            'desk_list_id' => 'required|integer|exists:desk_lists,id'
-        ]);
-
-        $card->update($data);
-
-        return new CardResource($card);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Card $card)
+    public function destroy(Task $task)
     {
-        $card->delete();
-        return new DeskResource($card);
+        $task->delete();
+        return new TaskResource($task);
     }
 }
