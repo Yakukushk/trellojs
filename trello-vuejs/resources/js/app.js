@@ -5,7 +5,7 @@ import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import router from "@/router/router.js";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import {faUserSecret, faPlus, faMinus, faPen, faTrash, faEye} from '@fortawesome/free-solid-svg-icons'
+import {faUserSecret, faPlus, faMinus, faPen, faTrash, faEye, faPalette, faShare} from '@fortawesome/free-solid-svg-icons'
 
 //vuetify
 // import '@mdi/font/css/materialdesignicons.css'
@@ -19,16 +19,20 @@ const vuetify = createVuetify({
     directives
 })
 
-library.add(faPlus, faMinus, faPen, faTrash, faEye)
+// pinia
+import { createPinia } from 'pinia'
+
+library.add(faPlus, faMinus, faPen, faTrash, faEye, faPalette, faShare)
 // import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 const app = createApp({
     components: {
         MainComponent
     }
 })
-
+const pinia = createPinia()
 app.use(bootstrap);
 app.use(vuetify);
 
 app.use(router);
+app.use(pinia);
 app.mount('#app');

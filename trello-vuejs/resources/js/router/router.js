@@ -9,12 +9,7 @@ import ShowDesk from "@/components/ShowDesk.vue";
 export default defineComponent(createRouter({
     history: createWebHashHistory(),
     routes: [
-        {
-            path: '/',
-            name: 'HomeComponent',
-            component: HomeComponent,
-            alias: '/'
-        },
+
         {
             path: '/about',
             name: "AboutComponent",
@@ -24,7 +19,8 @@ export default defineComponent(createRouter({
         {
             path: '/desk',
             name: "DeskComponent",
-            component: DeskComponent
+            component: DeskComponent,
+            alias: '/'
         },
         {
             path: '/desk/:deskId',

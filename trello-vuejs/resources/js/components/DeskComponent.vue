@@ -1,20 +1,22 @@
 <template>
-<header>
-    <header-component/>
-</header>
+    <header>
+
+<header-component></header-component>
+    </header>
+    <div class="circular" :style="{ background: store.backgroundColor} ">
     <div class="container">
         <h1>Desk</h1>
         <button @click.prevent="clickedButton = !clickedButton" type="button" class="btn">
             <font-awesome-icon v-if="clickedButton === false" icon="fa-solid fa-plus"
-                               style="width: 30px; height: 30px"/>
+                               style="width: 30px; height: 30px; color: white"/>
             <font-awesome-icon v-if="clickedButton === true" icon="fa-solid fa-minus"
-                               style="width: 30px; height: 30px"/>
+                               style="width: 30px; height: 30px; color: white"/>
         </button>
         <section class="mt-2 mb-2" v-if="clickedButton === true">
             <form @submit.prevent="addMethod">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Add Desk</label>
-                    <input type="text" v-model="nameDesk" class="form-control">
+                    <input type="text" v-model="nameDesk" class="form-control" style="width: 50vh"/>
 
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -32,9 +34,8 @@
 
                         <div class="card-body">
                             <h5 class="card-title">{{ desk.name }}</h5>
-                            <!--                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>-->
-                            <!--                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            <button class="btn btn-warning btn-sm me-2" @click.prevent="navigateDesk(desk.id)">Update</button>
+                            <button class="btn btn-warning btn-sm me-2" @click.prevent="navigateDesk(desk.id)">More
+                            </button>
                             <button class="btn btn-danger btn-sm" @click.prevent="deleteMethod(desk.id)">Delete</button>
                         </div>
 
@@ -50,16 +51,18 @@
             </div>
         </section>
     </div>
+    </div>
 </template>
 
 <script>
-import {ref, onMounted} from "vue";
+import {ref, onMounted, defineComponent} from "vue";
 import Swal from "sweetalert2";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {useRouter} from "vue-router";
 import HeaderComponent from "./SIteComponent/HeaderComponent.vue";
+import {useStorage} from "./pinia/pinia.js";
 
-export default {
+export default defineComponent( {
     name: "DeskComponent",
     components: {HeaderComponent, FontAwesomeIcon},
     setup() {
@@ -69,6 +72,8 @@ export default {
         const clickedButton = ref(false);
         const nameDesk = ref('');
         const router = useRouter();
+        const store = useStorage();
+
         onMounted(() => {
             console.log(clickedButton)
         });
@@ -159,14 +164,33 @@ export default {
             })
         }
 
+
+
+
         onMounted(() => api());
         return {
-            desks, errorValidate, loading, deleteMethod, clickedButton, addMethod, nameDesk, navigateDesk
+            desks,
+            errorValidate,
+            loading,
+            deleteMethod,
+            clickedButton,
+            addMethod,
+            nameDesk,
+            navigateDesk,
+            store,
+            router
         }
     }
-}
+})
 </script>
 
 <style scoped>
-
+h1, label {
+    color: white;
+}
+.circular{
+    background-size: cover;
+    width: auto;
+    height: 90vh;
+}
 </style>

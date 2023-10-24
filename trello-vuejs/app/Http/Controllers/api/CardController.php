@@ -61,6 +61,6 @@ class CardController extends Controller
     public function destroy(Card $card)
     {
         $card->delete();
-        return new DeskResource($card);
+        return new CardResource($card);
     }
 }

@@ -44,9 +44,17 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required|string',
+            'card_id' => 'required|integer|exists:cards,id',
+            'is_done_task' => 'required|boolean'
+        ]);
+
+        $task->update($data);
+
+        return new TaskResource($task);
     }
 
     /**
